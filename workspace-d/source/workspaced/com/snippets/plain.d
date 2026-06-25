@@ -766,6 +766,33 @@ static immutable PlainSnippet[] plainSnippets = [
 			~ "Useful to do a debug output inside a pure, nothrow or @nogc function.",
 		null, true
 	),
+	PlainSnippet(
+		[SnippetLevel.method],
+		"debug_writeln_location",
+		"debug try-catch writeln",
+		`debug { import std.stdio : writeln; try { writeln(__FILE__, "(", __LINE__, "): ", "$1"); } catch (Exception) {} }$0`,
+		"A `writeln` call in a debug block pre-filled source-code-level location information with try-catch wrapping around it.\n\n"
+			~ "Useful to do a debug output inside a pure or nothrow function.",
+		null, true
+	),
+	PlainSnippet(
+		[SnippetLevel.method],
+		"debug_writefln_location",
+		"debug try-catch writefln",
+		`debug { import std.stdio : writefln; try { writefln!"%s(%s): $1"(__FILE__, __LINE__, $2); } catch (Exception) {} }$0`,
+		"A `writefln` call in a debug block pre-filled with source-code-level location information with try-catch wrapping around it.\n\n"
+			~ "Useful to do a debug output inside a pure or nothrow function.",
+		null, true
+	),
+	PlainSnippet(
+		[SnippetLevel.method],
+		"debug_printf_location",
+		"debug try-catch printf",
+		`debug { import core.stdc.stdio : printf; printf("%.*s(%zu): $1\\n", int(__FILE__.length), __FILE__.ptr, size_t(__LINE__)); }$0`,
+		"A `printf` call in a debug block pre-filled with source-code-level location information.\n\n"
+			~ "Useful to do a debug output inside a pure, nothrow or @nogc function.",
+		null, true
+	),
 
 	// statements
 	PlainSnippet(
